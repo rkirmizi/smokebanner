@@ -16,7 +16,16 @@ class Banner:
 		gravatar_url = "http://www.gravatar.com/avatar/" + hashlib.md5(self.email.lower()).hexdigest() + "?"
 		gravatar_url += urllib.urlencode({'d':default, 's':str(size)})
 		gravatar_image = urllib.urlretrieve(gravatar_url)
-		return gravatar_image[0]
+		gravatar_image = Image.open(gravatar_image[0])
+		datas = gravatar_image.getdata()
+		newData = []
+		for item in datas:
+		    if item[0] == 0 and item[1] == 0 and item[2] == 0:
+		        newData.append((255, 255, 255, 0))
+		    else:
+		        newData.append(item)
+		gravatar_image.putdata(newData)
+		return gravatar_image
 
 	def banner(self):
 		size = (400,60)
@@ -33,10 +42,9 @@ class Banner:
 		draw.text(row2_pos, row2, fill=blue)
 		icon = Image.open("nosmoke.png")
 		im.paste(icon, (0,0))
-		gravatar = Image.open(self.get_gravatar(self.email))
+		gravatar = self.get_gravatar(self.email)
 		im.paste(gravatar, (340,0))
 		border = ImageOps.expand(im,border=2,fill=black)
-
 		border.show()
 
 

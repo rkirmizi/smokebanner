@@ -1,7 +1,19 @@
-from PIL import Image, ImageDraw, ImageOps
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
+
+import sys
+
+try:
+	from PIL import Image, ImageDraw, ImageOps
+except ImportError:
+	print 'Sisteminizde PIL yuklu degil lutfen yukleyiniz\npip install PIL'
+	sys.exit()
 
 class Banner:
-	"""Sigarayi biraktim banneri"""
+	"""
+	Sigarayi biraktiginiz tarihi ve ictiginiz sigara miktarini ogrenerek
+	Her gun ne kadar kar ettiginizi gosteren uygulama...
+	"""
 	def __init__(self, days=0, cost=0, quantity=0, email=''):
 		self.days = days
 		self.cost = cost
@@ -35,9 +47,10 @@ class Banner:
 		blue = (135,206,250)
 		black = (0,0,0)
 		row1_pos = (70,5)
-		row1 = "%d gundur sigara icmiyorum.." %(self.days)
+		row1 = '%d gundur sigara icmiyorum..' %(self.days)
 		row2_pos = (70,15)
-		row2 = "%d sigara icmedim & %d TL kardayim" %(self.quantity, self.cost)
+		row2 = '%d sigara icmedim & %d TL kardayim' %(self.quantity, self.cost)
+		footer = ''
 		draw.text(row1_pos, row1, fill=blue)
 		draw.text(row2_pos, row2, fill=blue)
 		icon = Image.open("nosmoke.png")
@@ -47,6 +60,6 @@ class Banner:
 		border = ImageOps.expand(im,border=2,fill=black)
 		border.show()
 
-
-banner = Banner(email='rkirmizi@gmail.com')
-banner.banner()
+if __name__ == '__main__':
+	banner = Banner(email='rkirmizi@gmail.com')
+	banner.banner()

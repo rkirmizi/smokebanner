@@ -15,20 +15,25 @@ class Banner:
 	Her gun ne kadar kar ettiginizi gosteren uygulama...
 	"""
 	def __init__(self, days=0, cost=0, quantity=0, email=''):
+		'''Sinifin alacagi parametreleri burada tanimliyoruz.'''
 		self.days = days
 		self.cost = cost
 		self.quantity = quantity
 		self.email = email
 
 	def get_gravatar(self, email):
+		'''
+		Verilen email'e ait gravatar varsa onu getiriyoruz yoksa default bir resim getiriyoruz
+		'''
 		import urllib, hashlib
-		# email = self.email
+		# buraya duzgun bir resim koymali
 		default = "http://www.gravatar.com/avatar/010f05028416c1402231e453d79433ba.png"
 		size = 60
 		gravatar_url = "http://www.gravatar.com/avatar/" + hashlib.md5(self.email.lower()).hexdigest() + "?"
 		gravatar_url += urllib.urlencode({'d':default, 's':str(size)})
 		gravatar_image = urllib.urlretrieve(gravatar_url)
 		gravatar_image = Image.open(gravatar_image[0])
+		#burada gelen resmin arkaplani siyah, yani (0,0,0) donuyor. bunlari alip beyaza ceviriyoruz.
 		datas = gravatar_image.getdata()
 		newData = []
 		for item in datas:
@@ -47,12 +52,14 @@ class Banner:
 		blue = (135,206,250)
 		black = (0,0,0)
 		row1_pos = (70,5)
+		#buraya duzgun bir metin koymali
 		row1 = '%d gundur sigara icmiyorum..' %(self.days)
 		row2_pos = (70,15)
 		row2 = '%d sigara icmedim & %d TL kardayim' %(self.quantity, self.cost)
 		footer = ''
 		draw.text(row1_pos, row1, fill=blue)
 		draw.text(row2_pos, row2, fill=blue)
+		#umuthanin katkilariyla nosomike.png :D
 		icon = Image.open("nosmoke.png")
 		im.paste(icon, (0,0))
 		gravatar = self.get_gravatar(self.email)

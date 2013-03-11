@@ -12,7 +12,7 @@ class Banner:
 		import urllib, hashlib
 		# email = self.email
 		default = "http://www.gravatar.com/avatar/010f05028416c1402231e453d79433ba.png"
-		size = 40
+		size = 60
 		gravatar_url = "http://www.gravatar.com/avatar/" + hashlib.md5(self.email.lower()).hexdigest() + "?"
 		gravatar_url += urllib.urlencode({'d':default, 's':str(size)})
 		gravatar_image = urllib.urlretrieve(gravatar_url)
@@ -34,11 +34,11 @@ class Banner:
 		icon = Image.open("nosmoke.png")
 		im.paste(icon, (0,0))
 		gravatar = Image.open(self.get_gravatar(self.email))
-		im.paste(gravatar, (320,0))
+		im.paste(gravatar, (340,0))
 		border = ImageOps.expand(im,border=2,fill=black)
 
 		border.show()
 
 
-banner = Banner()
+banner = Banner(email='rkirmizi@gmail.com')
 banner.banner()

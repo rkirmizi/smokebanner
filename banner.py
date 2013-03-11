@@ -2,7 +2,7 @@ from PIL import Image, ImageDraw, ImageOps
 
 class Banner:
 	"""Sigarayi biraktim banneri"""
-	def __init__(self, days=0, cost=0, quantity=0, email='denemeeee'):
+	def __init__(self, days=0, cost=0, quantity=0, email=''):
 		self.days = days
 		self.cost = cost
 		self.quantity = quantity
@@ -11,9 +11,8 @@ class Banner:
 	def get_gravatar(self, email):
 		import urllib, hashlib
 		# email = self.email
-		print email
 		default = "http://www.gravatar.com/avatar/010f05028416c1402231e453d79433ba.png"
-		size = 60
+		size = 40
 		gravatar_url = "http://www.gravatar.com/avatar/" + hashlib.md5(self.email.lower()).hexdigest() + "?"
 		gravatar_url += urllib.urlencode({'d':default, 's':str(size)})
 		gravatar_image = urllib.urlretrieve(gravatar_url)
@@ -35,7 +34,7 @@ class Banner:
 		icon = Image.open("nosmoke.png")
 		im.paste(icon, (0,0))
 		gravatar = Image.open(self.get_gravatar(self.email))
-		im.paste(gravatar)
+		im.paste(gravatar, (320,0))
 		border = ImageOps.expand(im,border=2,fill=black)
 
 		border.show()

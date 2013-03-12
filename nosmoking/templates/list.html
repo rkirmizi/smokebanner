@@ -1,9 +1,0 @@
-{% extends "base.html" %}
-{% block title %}List{% endblock title %}
-{% block content %}
-<ul>
-	{% for banner in banner_list %}
-    	<li><a href="{{ banner.get_absolute_url }}"> {{ banner.email }}</a></li>
-    {% endfor %}
-</ul>
-{% endblock content %}

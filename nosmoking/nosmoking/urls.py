@@ -8,8 +8,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'nosmoking.views.home', name='home'),
     url(r'^$', BannersList.as_view(), name='banner-list'),
-
-    url(r'^banner/(?P<pk>[-_\w]+)/$', BannerDetail.as_view(), name='banner-detail'),
+    url(r'^banner/(?P<pk>\d+)/$', BannerDetail.as_view(), name='banner-detail'),
 
 	# (r'^banners/detail', BannerDetail.as_view()),
     url(r'^admin/', include(admin.site.urls)),

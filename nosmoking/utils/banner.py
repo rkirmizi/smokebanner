@@ -59,7 +59,7 @@ class Banner:
 		black = (0,0,0)
 		row1_pos = (70,5)
 		#buraya duzgun bir metin koymali
-		row1 = '%d %s' %(self.days, self.first_row)
+		row1 = '%s %s' %(self.quit_date, self.first_row)
 		row2_pos = (70,15)
 		row2 = '%d %s' %(self.daily_quantity, self.second_row)
 		footer = self.footer

@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}Detail of - {{ banner.first_name}} {{ banner.last_name}}{% endblock title %}
+{% block content %}
+<a href="{% url 'banner-list' %}">Banner Listesi</a>
+<hr />
+<a href="{{banner.get_absolute_url}}"><img src="" / alt="{{banner.email}}"></a>
+{% endblock content %}

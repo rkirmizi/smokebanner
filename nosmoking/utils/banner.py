@@ -15,8 +15,9 @@ class Banner:
 	Her gun ne kadar kar ettiginizi gosteren uygulama...
 	"""
 
-	def __init__(self, first_name='', last_name='', email='', quit_date='', cost_per_package=0, daily_quantity=0, first_row='', second_row='', footer=''):
+	def __init__(self,userid='', first_name='', last_name='', email='', quit_date='', cost_per_package=0, daily_quantity=0, first_row='', second_row='', footer='', output_dir='', nosmoke_image=''):
 		'''Sinifin alacagi parametreleri burada tanimliyoruz.'''
+		self.id = userid
 		self.first_name = first_name
 		self.last_name = last_name
 		self.email = email
@@ -26,6 +27,8 @@ class Banner:
 		self.first_row = first_row
 		self.second_row = second_row
 		self.footer = footer
+		self.output_dir = output_dir
+		self.nosmoke_image = nosmoke_image
 
 	def get_gravatar(self, email):
 		'''
@@ -66,13 +69,9 @@ class Banner:
 		draw.text(row1_pos, row1, fill=blue)
 		draw.text(row2_pos, row2, fill=blue)
 		#umuthanin katkilariyla nosomike.png :D
-		icon = Image.open("nosmoke.png")
+		icon = Image.open(self.nosmoke_image)
 		im.paste(icon, (0,0))
 		gravatar = self.get_gravatar(self.email)
 		im.paste(gravatar, (340,0))
 		border = ImageOps.expand(im,border=2,fill=black)
-		border.show()
-
-if __name__ == '__main__':
-	banner = Banner(email='rkirmizi@gmail.com')
-	banner.banner()
+		return border.save('%s/%s.png' %(self.output_dir, self.userid))

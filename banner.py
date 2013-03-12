@@ -65,7 +65,7 @@ class Banner:
 		gravatar = self.get_gravatar(self.email)
 		im.paste(gravatar, (340,0))
 		border = ImageOps.expand(im,border=2,fill=black)
-		border.show()
+		border.save('deneme.png')
 
 if __name__ == '__main__':
 	banner = Banner(email='rkirmizi@gmail.com')

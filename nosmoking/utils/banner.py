@@ -10,14 +10,14 @@ except ImportError:
 	sys.exit()
 
 class Banner:
+	from datetime import datetime
 	"""
 	Sigarayi biraktiginiz tarihi ve ictiginiz sigara miktarini ogrenerek
 	Her gun ne kadar kar ettiginizi gosteren uygulama...
 	"""
 
-	def __init__(self,userid='', first_name='', last_name='', email='', quit_date='', cost_per_package=0, daily_quantity=0, first_row='', second_row='', footer='', output_dir='', nosmoke_image=''):
+	def __init__(self, first_name='', last_name='', email='', quit_date=datetime.now(), cost_per_package=0, daily_quantity=0, first_row='', second_row='', footer='', output_dir='', output_file='test.png', nosmoke_image=''):
 		'''Sinifin alacagi parametreleri burada tanimliyoruz.'''
-		self.id = userid
 		self.first_name = first_name
 		self.last_name = last_name
 		self.email = email
@@ -28,6 +28,7 @@ class Banner:
 		self.second_row = second_row
 		self.footer = footer
 		self.output_dir = output_dir
+		self.output_file = output_file
 		self.nosmoke_image = nosmoke_image
 
 	def get_gravatar(self, email):
@@ -74,4 +75,4 @@ class Banner:
 		gravatar = self.get_gravatar(self.email)
 		im.paste(gravatar, (340,0))
 		border = ImageOps.expand(im,border=2,fill=black)
-		return border.save('%s/%s.png' %(self.output_dir, self.userid))
+		return border.save('%s/%s' %(self.output_dir, self.output_file))

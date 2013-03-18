@@ -8,6 +8,9 @@ class Banner(models.Model):
     quit_date = models.DateTimeField()
     cost_per_package = models.IntegerField(max_length=5)
     daily_quantity = models.IntegerField(max_length=5)
+    first_row = models.CharField(max_length=100)
+    second_row = models.CharField(max_length=100)
+    footer = models.CharField(max_length=100, null=True)
 
     class Meta:
         verbose_name = _('Banner')
@@ -18,8 +21,3 @@ class Banner(models.Model):
 
     def get_absolute_url(self):
     	return "/banner/%i/" %(self.id)
-
-class QuitingQuotes(models.Model):
-    row1 = models.CharField(max_length=100)
-    row2 = models.CharField(max_length=100)
-    footer = models.CharField(max_length=100)

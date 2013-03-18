@@ -3,5 +3,5 @@
 {% block content %}
 <a href="{% url 'banner-list' %}">Banner Listesi</a>
 <hr />
-<a href="{{banner.get_absolute_url}}"><img src="{{ resim }}" alt="{{banner.email}}" /></a>
+<a href="{{banner.get_absolute_url}}"><img src="{{ banner_image }}" alt="{{banner.email}}" /></a>
 {% endblock content %}

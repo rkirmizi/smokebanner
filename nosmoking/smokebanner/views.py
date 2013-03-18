@@ -19,6 +19,7 @@ class BannerDetailView(DetailView):
         output_file = 'hoba.png'
         nosmoke = banner.Banner(email='rkirmizi@gmail.com', nosmoke_image='%s/nosmoke.png' %MEDIA_ROOT, output_dir=output_dir, output_file=output_file)
         nosmoke.banner()
-        context['resim'] = '%s/%s' %(MEDIA_URL,output_file)
+        context['banner_image'] = '%s/%s' %(MEDIA_URL,output_file)
         # import pdb; pdb.set_trace();
+        print self.get_object()
         return context

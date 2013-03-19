@@ -16,6 +16,7 @@ class Banner(models.Model):
     class Meta:
         verbose_name = _('Banner')
         verbose_name_plural = _('Banners')
+        get_latest_by = 'id'
 
     def __unicode__(self):
         return u'%s %s - %s' % (self.first_name, self.last_name, self.email)

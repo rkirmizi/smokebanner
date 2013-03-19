@@ -22,7 +22,7 @@ class Banner:
                  cost_per_package=0,
                  daily_quantity=0, first_row='',
                  second_row='', footer='',
-                 output_dir='', output_file='test.png', nosmoke_image=''):
+                 output_dir='', output_file='', nosmoke_image=''):
         '''Sinifin alacagi parametreleri burada tanimliyoruz.'''
         self.first_name = first_name
         self.last_name = last_name

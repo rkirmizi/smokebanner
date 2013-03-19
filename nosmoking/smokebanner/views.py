@@ -1,4 +1,5 @@
 from django.views.generic import ListView, DetailView
+from django.forms.models import model_to_dict
 from smokebanner.models import Banner
 from utils import banner
 from nosmoking.settings import MEDIA_ROOT, MEDIA_URL
@@ -20,18 +21,13 @@ class BannerDetailView(DetailView):
         output_dir = MEDIA_ROOT
         output_file = 'hoba.png'
         person = context.get('banner')
-        nosmoke = banner.Banner(first_name=person.first_name,
-                                last_name=person.last_name,
-                                email='rkirmizi@gmail.com',
-                                quit_date=person.quit_date,
-                                cost_per_package=person.cost_per_package,
-                                daily_quantity=person.daily_quantity,
-                                first_row=person.first_row,
-                                second_row=person.second_row,
-                                footer=person.footer,
-                                nosmoke_image='%s/nosmoke.png' % MEDIA_ROOT,
+        kwargs_person = model_to_dict(person)
+        kwargs_person['email'] = 'rkirmizi@gmail.com'
+        kwargs_person.pop('id')
+        nosmoke = banner.Banner(nosmoke_image='%s/nosmoke.png' % MEDIA_ROOT,
                                 output_dir=output_dir,
-                                output_file=output_file)
+                                output_file=output_file,
+                                **kwargs_person)
         nosmoke.banner()
         context['banner_image'] = '%s/%s' % (MEDIA_URL, output_file)
         return context

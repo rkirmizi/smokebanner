@@ -19,12 +19,19 @@ class BannerDetailView(DetailView):
         context = super(BannerDetailView, self).get_context_data(**kwargs)
         output_dir = MEDIA_ROOT
         output_file = 'hoba.png'
-        nosmoke = banner.Banner(email='rkirmizi@gmail.com',
+        person = context.get('banner')
+        nosmoke = banner.Banner(first_name=person.first_name,
+                                last_name=person.last_name,
+                                email='rkirmizi@gmail.com',
+                                quit_date=person.quit_date,
+                                cost_per_package=person.cost_per_package,
+                                daily_quantity=person.daily_quantity,
+                                first_row=person.first_row,
+                                second_row=person.second_row,
+                                footer=person.footer,
                                 nosmoke_image='%s/nosmoke.png' % MEDIA_ROOT,
                                 output_dir=output_dir,
                                 output_file=output_file)
         nosmoke.banner()
         context['banner_image'] = '%s/%s' % (MEDIA_URL, output_file)
-        # import pdb; pdb.set_trace();
-        print self.get_object()
         return context

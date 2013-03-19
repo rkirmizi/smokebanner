@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext as _
 
+
 class Banner(models.Model):
     first_name = models.CharField(max_length=12)
     last_name = models.CharField(max_length=12)
@@ -17,7 +18,7 @@ class Banner(models.Model):
         verbose_name_plural = _('Banners')
 
     def __unicode__(self):
-        return u'%s %s - %s' %(self.first_name, self.last_name, self.email)
+        return u'%s %s - %s' % (self.first_name, self.last_name, self.email)
 
     def get_absolute_url(self):
-    	return "/banner/%i/" %(self.id)
+        return "/banner/%i/" % (self.id)

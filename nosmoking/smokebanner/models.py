@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext as _
+from django.contrib.sites.models import Site
 
 
 class Banner(models.Model):
@@ -12,6 +13,8 @@ class Banner(models.Model):
     first_row = models.CharField(max_length=100)
     second_row = models.CharField(max_length=100)
     footer = models.CharField(max_length=100, null=True)
+    site = models.ForeignKey(Site)
+
 
     class Meta:
         verbose_name = _('Banner')
